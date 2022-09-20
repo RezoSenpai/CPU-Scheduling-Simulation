@@ -74,7 +74,7 @@ def waiting(listofprocess):
 def worker(pid):
     pid[0]["Instruction Load"] -= 1
     timeunit(
-        f"PID {pid[0]['Process ID']} executes. {pid[0]['Instruction Load']} instructions left. {queue_output(thewaiters)}"
+        f"PID {pid[0]['Process ID']} executes. {pid[0]['Instruction Load']} instructions left.\n{queue_output(thewaiters)}"
     )
     time.sleep(timetosleep)
 
@@ -93,7 +93,7 @@ while working:
             worker(theexecutor)
         elif theexecutor[0]["Instruction Load"] == 0 and len(thewaiters) > 0:
             theexecutor.pop()
-            timeunit("Context Switch")
+            timeunit(f"Context Switch\n{queue_output(thewaiters)}")
         elif theexecutor[0]["Instruction Load"] == 0 and len(thewaiters) == 0:
             theexecutor.pop(0)
     elif len(theexecutor) == 0:
