@@ -36,8 +36,9 @@ theexecutor = []
 
 
 # Sort the queue
-# I am sorting it after Wait time. The process with the highest wait time is executed first.
-# If 2 have the same wait value. The Shortest job is picked.
+# I am sorting it after executions and arrival time. The shortest job is selected first.
+# If a process has already been executed it is skipped until every processs has been executed once.
+# If 2 processes have the same instruction load, the one that has waited the longest will execute first.
 def sortque(que):
     return sorted(que, key=lambda d: (d["Executed"], d["Instruction Load"], -d["Wait"]))
 
